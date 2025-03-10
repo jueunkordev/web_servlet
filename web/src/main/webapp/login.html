@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Servlet + 로그인 만들기</title>
+</head>
+<!-- name속성은 Backend에게 전달되는 속성입니다. -->
+<body>
+<form id="frm" method="post" action="./loginok.do" onsubmit="return ck()">
+아이디 : <input type="text" name="mid"><br>
+패스워드 : <input type="password" name="mpass"><br>
+<input type="submit" value="로그인">
+</form>
+</body>
+<script>
+function validateForm() {
+	// 오늘 날짜 구하기
+	var today = new Date();
+	var year = today.getFullYear();
+	var month = today.getMonth() + 1;
+	var day = today.getDate();
+
+	if (month < 10) month = "0" + month;
+	if (day < 10) day = "0" + day;
+
+	var minDate = year + "-" + month + "-" + day;
+	frm.cday.setAttribute("min", minDate);
+
+	// 입력값 검사
+	if (!frm.cname.value) {
+		alert("고객명을 입력해 주세요.");
+		frm.cname.focus();
+		return false;
+	}
+	else if (!frm.ctel.value) {
+		alert("연락처를 입력해 주세요.");
+		frm.ctel.focus();
+		return false;
+	}
+	else if (!Array.from(frm.cmovie).some(function (movie) { return movie.checked; })) {
+		alert("영화를 선택해 주세요.");
+		return false;
+	}
+	else if (!frm.cday.value || frm.cday.value < minDate) {
+		alert("오늘 이후의 예매일자를 선택해 주세요.");
+		frm.cday.focus();
+		return false;
+	}
+
+	// 모든 조건 충족 시 폼 제출
+	frm.submit();
+}
+</script>
+
+</html>

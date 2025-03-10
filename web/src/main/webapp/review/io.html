@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>웹에 파일 전송</title>
+</head>
+<body>
+	<!-- 응용편
+	해당 파일첨부 기능을 활성화하는 프로세서 입니다.
+	해당 파일은 최대 5MB까지 첨부가 가능하며,
+	해당 파일 전송은 io_ok.do로 전달됩니다.
+	id_ok에서 web 경로로 notice라는 디렉토리에 해당 파일이 저장되도록 코드를 작성하시오
+	 -->
+	<!-- multipart/form-data : 첨부파일 사용 사 무조건 form 적용해야 함 -->
+	<form id="frm" method="post" action="./io_ok.do" enctype="multipart/form-data">
+		파일첨부 : <input type="file" name="mfile" accept="image/*"><br>
+		<input type="button" value="업로드" onclick="fileok()"><br>
+	</form>
+</body>
+<script>
+function fileok() {
+	var finfo = frm.mfile.files;
+	//var finfo = document.getElementById("mfile").files; // id 속성명
+	var size = finfo[0].size;
+	if(size > 5242880){
+		alert("5MB 이하인 파일만 첨부 가능합니다.");
+	} else{
+		frm.submit();
+	}
+	console.log(finfo[0].size);
+	console.log(finfo[0].name);
+	console.log(finfo[0].type);
+	console.log(finfo);
+	
+}
+</script>
+</html>

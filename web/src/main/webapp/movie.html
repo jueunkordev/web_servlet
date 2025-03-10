@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>영화 예매 시스템</title>
+</head>
+<body>
+	<h4>영화 예매 시스템</h4>
+	<form id="frm" action="./movie.do" method="post">
+		고객명 : <input type="text" name="cname"><br>
+		연락처 : <input type="tel" name="ctel"> "-"없이 숫자만 입력<br>
+		영화 선택 :<br>
+		<input type="radio" name="cmovie" value="히트맨2"> 히트맨2<br>
+		<input type="radio" name="cmovie" value="써니데이"> 써니데이<br>
+		<input type="radio" name="cmovie" value="브루탈리스트"> 브루탈리스트<br>
+		<input type="radio" name="cmovie" value="히어"> 히어<br>
+		<input type="radio" name="cmovie" value="하얼빈"> 하얼빈<br>
+		예매일자 <input type="date" name="cday" id="cday"><br>
+		<input type="button" value="예매하기" onclick="movieok()">
+	</form>
+</body>
+<script>
+function movieok() {
+	var year = new Date().getFullYear();
+	var month = new Date().getMonth() + 1;
+	var day = new Date().getDate();
+
+	if (month < 10){
+		month = "0" + month;
+	} 
+	if (day < 10){
+		day = "0" + day;
+	}
+
+	var minDate = year + "-" + month + "-" + day;
+	var movies = document.getElementsByName("cmovie");
+	var count = 0;
+
+	if (!frm.cname.value) {
+		alert("고객명을 입력해 주세요.");
+		frm.cname.focus();
+		return false;
+	}
+	else if (!frm.ctel.value) {
+		alert("연락처를 입력해 주세요.");
+		frm.ctel.focus();
+		return false;
+	}
+	else if (true) {
+		for (var i = 0; i < movies.length; i++) {
+		    if (movies[i].checked) {
+		        count++;
+		    }
+		}
+		if (count === 0) {
+		    alert("영화를 선택해 주세요.");
+		    return false;
+		}
+	}
+	else if (!frm.cday.value || frm.cday.value < minDate) {
+		alert("오늘 이후의 예매일자를 선택해 주세요.");
+		frm.cday.focus();
+		return false;
+	}
+
+	frm.submit();
+}
+</script>
+
+</html>
