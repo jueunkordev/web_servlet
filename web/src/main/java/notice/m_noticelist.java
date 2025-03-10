@@ -22,7 +22,13 @@ public class m_noticelist {
 	int ea = 3;		//페이지당 출력할 게시물 수 
 	
 	public m_noticelist(int s) {
-		this.spage = s;		//sql query문의 limit를 사용하기 위함 
+		if(s > 0) { // 1번 페이징 번호 외에 번호를 클릭했을 경우
+			// (페이지 번호 - 1) * 한 페이지 당 출력할 갯수
+			this.spage = (s-1) * ea;
+		} else {
+			this.spage = s;		//sql query문의 limit를 사용하기 위함 
+		}
+		
 		
 	}
 	
