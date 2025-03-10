@@ -27,8 +27,6 @@ public class notice_list extends HttpServlet {
 		ArrayList<ArrayList<String>> result = nl.db_data();
 		
 		request.setAttribute("result", result);
-		System.out.println(result);
-		System.out.println(result.size());
 		
 		RequestDispatcher rd = request.getRequestDispatcher("./notice_list.jsp");
 		rd.forward(request, response);
