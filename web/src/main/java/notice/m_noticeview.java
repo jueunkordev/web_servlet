@@ -35,19 +35,19 @@ public class m_noticeview {
 			this.ps.setInt(1, nidx);
 			this.rs = this.ps.executeQuery();
 			if(this.rs.next() == true) {	//해당 조건에 맞는 데이터가 있을 경우 
-				this.db_data = new ArrayList<>();
+				this.db_data = new ArrayList<String>();
 				this.db_data.add(this.rs.getString("nidx"));
 				this.db_data.add(this.rs.getString("subject"));
 				this.db_data.add(this.rs.getString("writer"));
 				this.db_data.add(this.rs.getString("pw"));
 				this.db_data.add(this.rs.getString("texts"));
-				this.db_data.add(this.rs.getString("filenm"));
+				this.db_data.add(this.rs.getString("fimenm"));
 				this.db_data.add(this.rs.getString("nfile"));
 				this.db_data.add(this.rs.getString("nview"));
 				this.db_data.add(this.rs.getString("ndate"));
 			}
-			System.out.println(this.db_data);
 			
+			System.out.println(this.db_data);
 			
 			
 		}catch (Exception e) {

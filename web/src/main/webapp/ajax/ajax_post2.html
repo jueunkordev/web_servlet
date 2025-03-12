@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax POST 전송방식 (Jquery)</title>
+<script src="../jquery/jquery.js"></script>
+<script>
+$(() => {
+    $("#btn").click(() => {
+        if ($("#mid").val() == "") {
+            alert("아이디를 입력하세요!!");
+        } else if ($("#memail").val() == "") {
+            alert("이메일을 입력하세요!!");
+        } else {
+            // ajax post 통신문법
+            $.ajax({
+                url: "./ajax_postok.do", // Back-end 경로
+                type: "post", // 전송방식
+                contentType: "application/x-www-form-urlencoded", // Jquery 전송 시 암호화
+                cache: false, // 브라우저 캐시 메모리 초기화
+                data: { 
+                    "userid": $("#mid").val(),
+                    "usermail": $("#memail").val()
+                },
+                success: function(response) { // xhr: 200번 통신이 발생 시 작동되는 함수
+                    console.log(response);
+                },
+                error: function(error) { // xhr: 200번 외에 숫자가 적용되었을 경우
+                    console.log("오류 발생 : " + error);
+                }
+            });
+        }
+    });
+});
+</script>
+</head>
+<body>
+    아이디 : <input type="text" id="mid">
+    이메일 : <input type="text" id="memail">
+    <input type="button" value="전송" id="btn"> 
+</body>
+</html>
