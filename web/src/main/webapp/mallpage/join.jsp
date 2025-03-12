@@ -13,7 +13,7 @@
   </head>
 <body>
 	<!-- 상단 로고, 메뉴 -->
-		<%@ include file="./top.jsp" %> <%-- jsp 주석 --%>
+		<%@ include file="./top.jsp" %>
 	<!-- 상단 로고, 메뉴 -->
 	<main>
 		<%@ include file="./join_view.jsp" %>
